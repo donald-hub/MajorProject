@@ -63,10 +63,7 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                 <form action="resources/populateData.php" method="post">
-                    <div class="section answers hidden">
-                        <h3>answers</h3>
-                
-                    </div>
+                    
                 <div class="section courses hidden">
                 <h3>Courses</h3>
                 <div class="form-group">

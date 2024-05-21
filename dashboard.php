@@ -54,8 +54,9 @@
         <div class="sideBar">
             <ul class="view">
                 <li class="menuItems one" >Course Details</li>
-                <li class="menuItems two">Edit CO's</li>
+                <li class="menuItems two">View Course Objectives</li>
                 <li class="menuItems three">Question Papers</li>
+                <li class="menuItems five">Answers</li>
                 <li class="menuItems four">Students Details</li>
             </ul>
         </div>
@@ -92,9 +93,93 @@
                 
             </ul>
             </div>
-                <div id="editCos" class="editCos hidden">
-                    editCos
+            <div id="answers" class="answers hidden">
+                        <h3>answers</h3>
+                        <form action="resources/insertAnswers.php" method="post">
+                        <div class="form-group">
+                    <input class="form-control" type="text" name="que_id" placeholder="Question ID" >
                 </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="exam_id" placeholder="Exam ID">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="answer" placeholder="Answer">
+                </div>
+                <input class="btn btn-info btn-block" name="add_answer" type="submit" value="Insert">
+                    </div>
+                    </form>
+
+
+
+
+                    
+                <div id="editCos" class="editCos hidden">
+                    <h3>Course Objectives</h3>
+                    <?php
+require "resources/connect.php";
+$course_id = 'CS413';
+try {
+
+    // Prepare the SQL statement
+    $stmt = $conn->prepare("SELECT course_ob.course_ob_no, course_ob.description, course_ob.level, course.course_id, course.course_name
+                           FROM course_ob
+                           JOIN course ON course_ob.course_id = course.course_id
+                           WHERE course_ob.course_id = '$course_id'");
+    // Execute the statement
+    $stmt->execute();
+
+    // Fetch all the results
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo '<div class="center">
+            <h3 class="bold">Course Code:&ThickSpace;'.$results[0]["course_id"].'</h3>
+        </div>
+        <div class="center">
+            <h3 class="bold">Course Name:&ThickSpace;'.$results[0]["course_name"].'</h3>
+        </div>';
+    echo '<div class="container">
+            <table class="table table-bordered" border = "1">
+                <thead>
+                    <tr>
+                    <th>CO\'s</th>
+                    <th>Statements</th>
+                    <th>Level</th>
+                    <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>';
+
+    // Loop through the results and output them
+    foreach ($results as $row) {
+        echo "<tr>
+                <td>{$row['course_ob_no']}</td>
+                <td>{$row['description']}</td>
+                <td>{$row['level']}</td>
+                <td><a role='button'>Edit</a></td>
+              </tr>";
+    }
+
+    echo '        </tbody>
+            </table>
+            <button class="btn btn-info">Add CO</button>
+        </div>';
+        
+
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+// Close the connection
+// $pdo = null;'
+?>
+
+                    
+                </div>
+
+
+
+
+
+
                 <div id="studentDetails" class="studentDetails hidden">
                     Student Details
                 </div>
