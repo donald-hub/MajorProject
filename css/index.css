@@ -1,0 +1,13 @@
+.logo{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+.dropdown-item{
+    background: transparent;
+    border: none;
+    display:list-item;
+    padding-left: 10px;
+    width: 100%;
+}

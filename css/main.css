@@ -1,0 +1,39 @@
+html{
+    background-color: cornflowerblue;
+}
+body{
+    font-family: sans-serif;
+}
+.title{
+    text-align: center;
+}
+.submitBtn{
+    padding: 8px 20px 8px 20px;
+    background-color: #5783db;
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+    display: block;
+    margin: auto;
+    font-weight: bolder;
+    font-size: large;
+    color: rgb(241, 238, 255);
+}
+.login{
+    display: flex;
+    flex-direction: column;
+}
+#linkToRegister{
+    font-size: small;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.registrationForm, .loginForm{
+    min-width: 25%;
+    min-height: 30%;
+    padding: 20px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+    /* background-color: rgb(226, 226, 226); */
+    background-color: whitesmoke;
+}

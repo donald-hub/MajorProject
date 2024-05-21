@@ -1,0 +1,103 @@
+body{
+    margin: 0px;
+    background-color: #FAF9F6;
+    overflow: hidden;
+}
+.navigationBar{
+    background-color: skyblue;
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.navnavigationBarbar img{
+    padding: 5px 0px 5px 10px;
+}
+.navigationBar span{
+    color: navy;
+    padding-left: 30px;
+    font-size: 4em;
+    font-weight: bolder;
+}
+.profile{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-top: 50px;
+    margin-right: 10px;
+}
+.navbarMenu{
+    background-color: rgba(0, 0, 0, 0.925);
+    color: white;
+    width: 100vw;
+    display: flex;
+    font-size: larger;
+    justify-content: space-between ;
+    text-transform: capitalize;
+    font-family: system-ui ;
+}
+.navbarMenu a{
+    color: white;
+    text-decoration: none;
+}
+.navbarMenu span{
+    padding-left: 20px;
+}
+.logout{
+    padding-right: 20px;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+}
+.cardOptions{
+    display: flex;
+    justify-content: flex-start;
+}
+.sideBar{
+    min-width: 15%;
+}
+.view{
+    height: 100vh;
+    margin-top: 0px;
+    padding: 0px;
+    list-style: none;
+    background-color: rgb(218, 218, 217);
+}
+
+.menuItems{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    font-size: 1.1em;
+    border-bottom: 1px white solid;
+    margin-left: 0px;
+    height: 3em;
+}
+.menuItems:hover{
+    transform: scaleY(1.05);
+    box-shadow: 0px 1px 0px black;
+    font-weight: bold;
+}
+
+.hidden{
+    display:none;
+}
+
+.isActive{
+    font-size: 1.2em; 
+    font-weight: bolder;
+}
+
+
+/* for sections */
+#populateDataSection{
+    padding-left: 15px;
+}
+
+.populateBtn{
+    color: blue;
+    border-color: blue;
+}

@@ -1,0 +1,155 @@
+body{
+    margin: 0px;
+    background-color: #FAF9F6;
+    overflow: hidden;
+}
+.navigationBar{
+    background-color: skyblue;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.navigationBar img{
+    padding: 5px 0px 5px 10px;
+}
+.navigationBar span{
+    color: navy;
+    padding-left: 30px;
+    font-size: 4em;
+    font-weight: bolder;
+}
+.profile{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-top: 50px;
+    margin-right: 10px;
+
+}
+.navbarMenu{
+    background-color: rgba(0, 0, 0, 0.925);
+    color: white;
+    display: flex;
+    font-size: larger;
+    justify-content: space-between ;
+    text-transform: capitalize;
+    font-family: system-ui ;
+}
+.navbarMenu a{
+    color: white;
+    text-decoration: none;
+}
+.navbarMenu span{
+    padding-left: 20px;
+}
+.logout{
+    padding-right: 20px;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    
+}
+.cardContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.cardOptions{
+    display: flex;
+    justify-content: flex-start;
+}
+.studentDetails{
+    flex-grow: 1;
+}
+#sublist{
+    display: flex;
+    justify-content: flex-start;
+}
+#sublist > li{
+    padding: 5px;
+    list-style: none;
+}
+#sublist > li:first-child{
+    font-weight: bold;
+}
+.card{
+    background-image: url("../images/card-image.jpg");
+    background-position: center;
+    width: 220px;
+    height: 120px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-weight: bold;
+    font-family: sans-serif;
+    border-radius: 10px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+    transition: transform 0.2s;
+    
+}
+.card:hover{
+    transform: scale(1.1);
+    
+}
+.cardTitle{
+    border-top: 1px solid silver;
+    width: 100%;
+    padding: 5px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    border-radius: 0px 0px 10px 10px;
+}
+
+
+.course-title{
+    font-size: larger;
+    padding-left: 30px;
+}
+
+#courseDetails{
+    list-style: none;
+}
+#courseDetails li{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.sideBar{
+    min-width: 15%;
+}
+.view{
+    height: 100vh;
+    margin-top: 0px;
+    padding: 0px;
+    list-style: none;
+    background-color: rgb(218, 218, 217);
+  }
+
+  .menuItems{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    font-size: 1em;
+    border-bottom: 1px white solid;
+    margin-left: 0px;
+    height: 3em;
+  }
+  .menuItems:hover{
+    transform: scaleY(1.05);
+    box-shadow: 0px 1px 0px black;
+    font-weight: bold;
+  }
+
+  
+.hidden{
+    display:none;
+  }
+
+.isActive{
+    font-size: 1.1em; 
+    font-weight: bolder;
+}
