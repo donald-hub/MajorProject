@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "connect.php";
 if(isset($_POST['userType'])){
 $user_type = $_POST['userType'];
@@ -22,6 +23,7 @@ try
         echo "Login failed";
       }
       else{
+        $_SESSION['user']=$_POST['username'];
         if($user_type == "faculty")
         header("Location: ../dashboard.php");
         else if($user_type == "admin")

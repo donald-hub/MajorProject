@@ -1,35 +1,57 @@
+var viewProgramOb = document.getElementById("viewProgramOb");
 var createTable = document.getElementById("createTable");
 var populateData = document.getElementById("populateData");
 var generateReport = document.getElementById("generateReport");
+
+var viewProgramObSection = document.getElementById("viewProgramObSection");
 var createTableSection = document.getElementById("createTableSection");
 var populateDataSection = document.getElementById("populateDataSection");
 var generateReportSection = document.getElementById("generateReportSection");
+
 var next = document.getElementById("next");
 var section1 = document.getElementById("section1");
 var tableName = document.getElementById("tname");
 var columns = document.getElementById("columns");
 var section2 = document.getElementById("section2");
+
 var one = document.querySelector(".one");
 var two = document.querySelector(".two");
 var three = document.querySelector(".three");
+var four = document.querySelector(".four");
 
+viewProgramOb.addEventListener('click', showViewProgramObSection);
 createTable.addEventListener('click', showCreateTableSection);
 populateData.addEventListener('click', showPopulateDataSection);
 generateReport.addEventListener('click', showGenerateReportSection);
 next.addEventListener('click', nextForm);
 
-function showCreateTableSection(){
+
+function showViewProgramObSection(){
     one.classList.add("isActive");
     two.classList.remove("isActive");
     three.classList.remove("isActive");
+    four.classList.remove("isActive");
+    viewProgramObSection.classList.remove("hidden");
+    createTableSection.classList.add("hidden");
+    populateDataSection.classList.add("hidden");
+    generateReportSection.classList.add("hidden");
+}
+function showCreateTableSection(){
+    one.classList.remove("isActive");
+    two.classList.add("isActive");
+    three.classList.remove("isActive");
+    four.classList.remove("isActive");
+    viewProgramObSection.classList.add("hidden");
     createTableSection.classList.remove("hidden");
     populateDataSection.classList.add("hidden");
     generateReportSection.classList.add("hidden");
 }
 function showPopulateDataSection(){
     one.classList.remove("isActive");
-    two.classList.add("isActive");
-    three.classList.remove("isActive");
+    two.classList.remove("isActive");
+    three.classList.add("isActive");
+    four.classList.remove("isActive");
+    viewProgramObSection.classList.add("hidden");
     createTableSection.classList.add("hidden");
     populateDataSection.classList.remove("hidden");
     generateReportSection.classList.add("hidden");
@@ -37,7 +59,9 @@ function showPopulateDataSection(){
 function showGenerateReportSection(){
     one.classList.remove("isActive");
     two.classList.remove("isActive");
-    three.classList.add("isActive");
+    three.classList.remove("isActive");
+    four.classList.add("isActive");
+    viewProgramObSection.classList.add("hidden");
     createTableSection.classList.add("hidden");
     populateDataSection.classList.add("hidden");
     generateReportSection.classList.remove("hidden");
@@ -55,7 +79,6 @@ function nextForm(){
 
 
 //for selection form section using buttons in populate data section
-var answers = document.getElementById("answers");
 var courses = document.getElementById("courses");
 var courseOb = document.getElementById("courseOb");
 var department = document.getElementById("department");
@@ -68,7 +91,6 @@ var students = document.getElementById("students");
 
 
 
-answers.addEventListener("click", showAnswers);
 courses.addEventListener("click", showCourses);
 courseOb.addEventListener("click", showCourseOb);
 department.addEventListener("click", showDepartment);
@@ -80,7 +102,6 @@ questions.addEventListener("click", showQuestions);
 students.addEventListener("click", showStudents);
 
 var section = document.querySelectorAll(".section");
-var answers = document.querySelector(".answers");
 var courses = document.querySelector(".courses");
 var courseOb = document.querySelector(".courseOb");
 var department = document.querySelector(".department");
@@ -98,20 +119,7 @@ var students = document.querySelector(".students");
 //     }
 // } 
 
-function showAnswers(){
-    answers.classList.remove("hidden");
-    courses.classList.add("hidden");
-    courseOb.classList.add("hidden");
-    department.classList.add("hidden");
-    exam.classList.add("hidden");
-    faculty.classList.add("hidden");
-    programme.classList.add("hidden");
-    programmeOb.classList.add("hidden");
-    questions.classList.add("hidden");
-    students.classList.add("hidden");
-}
 function showCourses(){
-    answers.classList.add("hidden");
     courses.classList.remove("hidden");
     courseOb.classList.add("hidden");
     department.classList.add("hidden");
@@ -123,7 +131,6 @@ function showCourses(){
     students.classList.add("hidden");
 }
 function showCourseOb(){
-    answers.classList.add("hidden");
     courses.classList.add("hidden");
     courseOb.classList.remove("hidden");
     department.classList.add("hidden");
@@ -135,7 +142,6 @@ function showCourseOb(){
     students.classList.add("hidden");
 }
 function showDepartment(){
-    answers.classList.add("hidden");
     courses.classList.add("hidden");
     courseOb.classList.add("hidden");
     department.classList.remove("hidden");
@@ -147,7 +153,6 @@ function showDepartment(){
     students.classList.add("hidden");
 }
 function showExam(){
-    answers.classList.add("hidden");
     courses.classList.add("hidden");
     courseOb.classList.add("hidden");
     department.classList.add("hidden");
@@ -159,7 +164,6 @@ function showExam(){
     students.classList.add("hidden");
 }
 function showFaculty(){
-    answers.classList.add("hidden");
     courses.classList.add("hidden");
     courseOb.classList.add("hidden");
     department.classList.add("hidden");
@@ -173,7 +177,6 @@ function showFaculty(){
 
 
 function showProgramme(){
-    answers.classList.add("hidden");
     courses.classList.add("hidden");
     courseOb.classList.add("hidden");
     department.classList.add("hidden");
@@ -185,7 +188,6 @@ function showProgramme(){
     students.classList.add("hidden");
 }
 function showProgrammeOb(){
-    answers.classList.add("hidden");
     courses.classList.add("hidden");
     courseOb.classList.add("hidden");
     department.classList.add("hidden");
@@ -197,7 +199,6 @@ function showProgrammeOb(){
     students.classList.add("hidden");
 }
 function showQuestions(){
-    answers.classList.add("hidden");
     courses.classList.add("hidden");
     courseOb.classList.add("hidden");
     department.classList.add("hidden");
@@ -209,7 +210,6 @@ function showQuestions(){
     students.classList.add("hidden");}
 
 function showStudents(){
-    answers.classList.add("hidden");
     courses.classList.add("hidden");
     courseOb.classList.add("hidden");
     department.classList.add("hidden");
@@ -260,3 +260,28 @@ function addColumn(decrement){
     
 
 }
+
+
+
+
+
+//ajax part 
+viewProgramOb.addEventListener("click", function() {
+    var courseId = document.getElementById('program_id').innerHTML;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "resources/ajaxResponseFaculty.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        document.getElementById('response').innerHTML = xhr.responseText;
+      }
+    };
+    xhr.send("course_id=" + courseId);
+  });
+  //end of ajax part
+
+
+
+  function download(){
+    print();
+  }

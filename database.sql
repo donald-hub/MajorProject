@@ -88,6 +88,8 @@ CREATE TABLE maps_to_programme_ob_course_ob(
 CREATE TABLE register_student_course(
 	course_id varchar(6) NOT NULL,
 	std_id varchar(8) NOT NULL,
+    academaic_year varchar(10),
+    session varchar(10),
     CONSTRAINT register_student_course_course FOREIGN KEY (course_id) REFERENCES course(course_id),
     CONSTRAINT register_student_course_student FOREIGN KEY (std_id) REFERENCES student(std_id),
     CONSTRAINT register_student_course_unique UNIQUE (course_id, std_id)
@@ -96,6 +98,7 @@ CREATE TABLE answers(
 	std_id varchar(8) NOT NULL,
     que_id varchar(3) NOT NULL,
     exam_id varchar(20) NOT NULL,
+    marks varchar(3),
     CONSTRAINT answers_exam FOREIGN KEY (exam_id) REFERENCES exam(exam_id),
     CONSTRAINT answers_student FOREIGN KEY (std_id) REFERENCES student(std_id),
     CONSTRAINT answers_question_paper FOREIGN KEY (que_id) REFERENCES question_paper(que_id),

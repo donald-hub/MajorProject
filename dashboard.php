@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faculty</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/print.css">
     <!--including boostrap files below-->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
@@ -17,37 +19,38 @@
     </nav>
     <nav class="navbarMenu">
         <span>Dashboard</span>
-        <button type="button" class="logout" onclick="logout()">Logout</button>
+        <form action="resources/logout.php" method="post"><input type="submit"  name="logout" class="logout" value="Logout"></input></form>
     </nav>
 
     <div class="cardContainer">
-        <div class="card">
-            <span class="cardTitle" id="cs519">CS519</span>
-        </div>
-        <div class="card">
-            <span class="cardTitle" id="cs512">CS512</span>
-        </div>
-        <div class="card">
-            <span class="cardTitle">CS519</span>
-        </div>
-        <div class="card">
-            <span class="cardTitle">CS519</span>
-        </div>
-        <div class="card">
-            <span class="cardTitle">CS519</span>
-        </div>
-        <div class="card">
-            <span class="cardTitle">CS519</span>
-        </div>
-        <div class="card">
-            <span class="cardTitle">CS519</span>
-        </div>
-        <div class="card">
-            <span class="cardTitle">CS519</span>
-        </div>
-        <div class="card">
-            <span class="cardTitle">CS519</span>
-        </div>
+        <?php
+        require "resources/connect.php";
+        $user = $_SESSION['user'];
+        try {
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare("SELECT faculty_id, course_id
+                                   FROM teaches_faculty_course
+                                   WHERE faculty_id = '$user';");
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch all the results
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            // Loop through the results and output them
+            foreach ($results as $row) {
+                echo '<div class="card">
+                <span class="cardTitle" id="course_id" value="'.$row['course_id'].'">'.$row['course_id'].'</span>
+            </div>';
+            }
+                
+        
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+        ?>
+        
     </div>
     
     <div class="cardOptions hidden">
@@ -61,7 +64,8 @@
             </ul>
         </div>
             
-        <div class="main container">        
+        <div class="main container"> 
+            <input type="hidden" id="course_id" value="CS413"></input>
             <div id="courseDetails" class="courseDetails hidden">
                 <h3>Course Details</h3>
                 
@@ -81,9 +85,9 @@
                 <ul id="sublist">
                     <li>Course Objective</li>
                     <li><ul class="orderedList">
-                            <li>CO 1</li>
-                            <li>CO 2</li>
-                            <li>CO 3</li>
+                        <li>CO 1</li>
+                        <li>CO 2</li>
+                        <li>CO 3</li>
                             <li>CO 4</li>
                             <li>CO 5</li>
                         </ul>
@@ -106,72 +110,16 @@
                     <input class="form-control" type="text" name="answer" placeholder="Answer">
                 </div>
                 <input class="btn btn-info btn-block" name="add_answer" type="submit" value="Insert">
-                    </div>
-                    </form>
-
-
-
-
-                    
-                <div id="editCos" class="editCos hidden">
-                    <h3>Course Objectives</h3>
-                    <?php
-require "resources/connect.php";
-$course_id = 'CS413';
-try {
-
-    // Prepare the SQL statement
-    $stmt = $conn->prepare("SELECT course_ob.course_ob_no, course_ob.description, course_ob.level, course.course_id, course.course_name
-                           FROM course_ob
-                           JOIN course ON course_ob.course_id = course.course_id
-                           WHERE course_ob.course_id = '$course_id'");
-    // Execute the statement
-    $stmt->execute();
-
-    // Fetch all the results
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo '<div class="center">
-            <h3 class="bold">Course Code:&ThickSpace;'.$results[0]["course_id"].'</h3>
-        </div>
-        <div class="center">
-            <h3 class="bold">Course Name:&ThickSpace;'.$results[0]["course_name"].'</h3>
-        </div>';
-    echo '<div class="container">
-            <table class="table table-bordered" border = "1">
-                <thead>
-                    <tr>
-                    <th>CO\'s</th>
-                    <th>Statements</th>
-                    <th>Level</th>
-                    <th>Options</th>
-                    </tr>
-                </thead>
-                <tbody>';
-
-    // Loop through the results and output them
-    foreach ($results as $row) {
-        echo "<tr>
-                <td>{$row['course_ob_no']}</td>
-                <td>{$row['description']}</td>
-                <td>{$row['level']}</td>
-                <td><a role='button'>Edit</a></td>
-              </tr>";
-    }
-
-    echo '        </tbody>
-            </table>
-            <button class="btn btn-info">Add CO</button>
-        </div>';
+            </div>
+        </form>
         
-
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-
-// Close the connection
-// $pdo = null;'
-?>
-
+        
+        
+        
+        
+        <div id="editCos" class="editCos hidden">
+            <h3>Course Objectives</h3>
+            <div id="responseCos"></div> 
                     
                 </div>
 
@@ -181,8 +129,20 @@ try {
 
 
                 <div id="studentDetails" class="studentDetails hidden">
-                    Student Details
+                    <h3>Student Details</h3>
+                    <div id="responseStdDetails"></div>
+                    <div class="insertMarks">
+                        <button class="btn btn-success" type="button" name="co" value="CO">Insert First Term Marks</button>
+                        <button class="btn btn-success" type="button" name="co" value="CO">Insert Mid Term Marks</button>
+                        <button class="btn btn-success" type="button" name="co" value="CO">Insert Second Term Marks</button>
+                        <button class="btn btn-success" type="button" name="co" value="CO">Insert End Term Marks</button>
+                    </div>
+
                 </div>
+
+
+
+
                 <div id="questionPaper" class="questionPaper hidden">
                     <!---question paper section start--->
                     <?php

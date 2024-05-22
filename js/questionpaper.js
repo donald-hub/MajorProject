@@ -46,6 +46,7 @@ function addSubQuestionFunction(){
     questionHtml.innerHTML += string;
 }
 
+//ajax function
 function showHint(str) {
     if (str.length == 0) {
         return;

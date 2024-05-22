@@ -3,13 +3,44 @@ var cards = document.querySelectorAll(".card");
 var cardContainer = document.querySelector(".cardContainer");
 var cardOptions = document.querySelector(".cardOptions");
 var courseTitle = document.querySelector(".course-title");
+var courseId = document.getElementById("course_id");
 
 
 //function calling
 for(i=0; i<cards.length; i++){
     cards[i].addEventListener("click", toggleNavActive);
+    
+    //ajax part 
+    cards[i].addEventListener("click", function() {
+      var courseId = document.getElementById('course_id').innerHTML;
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "resources/ajaxFacultyEditCos.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          document.getElementById('responseCos').innerHTML = xhr.responseText;
+        }
+      };
+      xhr.send("course_id=" + courseId);
+    });
+    //end of ajax part
+
+
+    cards[i].addEventListener("click", function() {
+      var courseId = document.getElementById('course_id').innerHTML;
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "resources/ajaxFacultyStdDetails.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          document.getElementById('responseStdDetails').innerHTML = xhr.responseText;
+        }
+      };
+      xhr.send("course_id=" + courseId);
+    });
+    //end of ajax part
   }
-  
+
 //function definition
 function toggleNavActive(){
     //for nav active
@@ -18,6 +49,7 @@ function toggleNavActive(){
      const cardTitle = this.querySelector('.cardTitle').innerText;
      // Output the card title to console (you can do whatever you want with it)
     courseTitle.innerHTML = cardTitle;
+    courseId.innerHTML = cardTitle;
     
     cardContainer.classList.add("hidden");
     cardOptions.classList.remove("hidden");
@@ -99,6 +131,17 @@ function toggleNavActive(){
     answers.classList.remove("hidden");
   }
 
-  function logout(){
-    window.location.href = "index.html";
+//   function logout(){
+//     window.location.href = "index.html";
+// }
+
+function download(){
+  print();
+}
+
+
+function edit(row){
+  console.log(row);
+  var editOption = document.getElementById("editOption");
+  editOption.classList.remove("hidden");
 }
