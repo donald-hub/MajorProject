@@ -32,7 +32,7 @@ if ($q !== ""){
     {
     $html .= "<tr><td>".$row['course_ob_no']."</td>";
     $html .= "<td>".$row['description']."</td>";
-    $html .= "<td>2, 4</td></tr>";
+    $html .= "<td><input class='form-control' type='text' > </input></td></tr>";
   }
   $html .= "</table>";
   echo $html;

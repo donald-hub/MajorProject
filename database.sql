@@ -54,7 +54,7 @@ CREATE TABLE question_paper(
 	description varchar(1000) NOT NULL,
     answer varchar(1000) NOT NULL,
     exam_id varchar(20) NOT NULL,
-	PRIMARY KEY (que_id),
+    UNIQUE (que_id, exam_id),
     FOREIGN KEY (exam_id) REFERENCES exam(exam_id)
 );
 CREATE TABLE teaches_faculty_course(

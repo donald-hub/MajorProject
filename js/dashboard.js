@@ -5,6 +5,28 @@ var cardOptions = document.querySelector(".cardOptions");
 var courseTitle = document.querySelector(".course-title");
 var courseId = document.getElementById("course_id");
 
+function goBack(){
+  if(cardContainer.classList.contains("hidden")){
+    cardContainer.classList.remove("hidden");
+    cardOptions.classList.add("hidden");
+  }
+}
+
+function showHint(str) {
+  if (str.length == 0) {
+      alert("0");
+      return;
+  } else {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("txtHint").innerHTML = this.responseText;
+          }
+      };
+      xmlhttp.open("GET", "resources/getCOs.php?q=" + str, true);
+      xmlhttp.send();
+  }
+}
 
 //function calling
 for(i=0; i<cards.length; i++){
@@ -22,6 +44,8 @@ for(i=0; i<cards.length; i++){
         }
       };
       xhr.send("course_id=" + courseId);
+      showHint(courseId);
+
     });
     //end of ajax part
 
@@ -34,6 +58,23 @@ for(i=0; i<cards.length; i++){
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
           document.getElementById('responseStdDetails').innerHTML = xhr.responseText;
+        }
+      };
+      xhr.send("course_id=" + courseId);
+    });
+    //end of ajax part
+
+
+
+     //ajax part 
+     cards[i].addEventListener("click", function() {
+      var courseId = document.getElementById('course_id').innerHTML;
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "resources/ajaxFacultyCourseCode.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          document.getElementById('responseCode').innerHTML = xhr.responseText;
         }
       };
       xhr.send("course_id=" + courseId);
@@ -145,3 +186,36 @@ function edit(row){
   var editOption = document.getElementById("editOption");
   editOption.classList.remove("hidden");
 }
+
+
+var firstTerm = document.getElementById("first_term");
+var midTerm = document.getElementById("mid_term");
+var secondTerm = document.getElementById("second_term");
+var endTerm = document.getElementById("end_term");
+
+
+firstTerm.addEventListener('click', () => {
+
+    var courseId = document.getElementById('course_id').innerHTML;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "resources/ajaxFacultyInsertFirst.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        document.getElementById('responseInsertMarks').innerHTML = xhr.responseText;
+      }
+    };
+    xhr.send("course_id=" + courseId);
+});
+
+midTerm.addEventListener('click', () => {
+  alert("mid");
+});
+
+secondTerm.addEventListener('click', () => {
+  alert("2");
+});
+
+endTerm.addEventListener('click', () => {
+  alert("end");
+});

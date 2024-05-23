@@ -77,8 +77,7 @@ foreach ($results as $row) {
 
 echo '        </tbody>
         </table>
-        <button class="btn btn-info">Add CO</button>
-        <button class="btn" onclick="download()">Download</button>
+        <button style="position: absolute; right: 70px;" class="btn btn-primary" onclick="download()">Download</button>
     </div>
     </div>
     <div id="editOption" class="hidden">

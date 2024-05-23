@@ -14,7 +14,7 @@ function addQuestionFunction(){
                     '<div class="form-group">' +
                         '<div class="col-md-8">' +
                             '<label for="questions">' + increment + ' </label>' +
-                            '<textarea class="form-control" name="questions" id="questions" rows="5" cols="70" required></textarea>' +
+                            '<textarea class="form-control" name="questions[]" id="questions" rows="5" cols="70" required></textarea>' +
                         '</div>' +
                         '<div class="col-md-2">' +
                             '<label for="mark">Mark</label>' +
@@ -32,7 +32,7 @@ function addSubQuestionFunction(){
     var string ='<div class="form-group">' +
                 '<div class="col-md-8">' +
                 '<label for="subquestions">(' + array[subincrement] + ') </label>' +
-                    '<textarea class="form-control" name="subquestions" id="subquestions" rows="5" cols="70" required></textarea>' +
+                    '<textarea class="form-control" name="subquestions[]" id="subquestions" rows="5" cols="70" required></textarea>' +
                 '</div>' +
                 '<div class="col-md-2">' +
                     '<label for="mark">Mark</label>' +
@@ -62,8 +62,5 @@ function showHint(str) {
     }
 }
 
-function test(str){
-    alert(str);
-}
 
 
