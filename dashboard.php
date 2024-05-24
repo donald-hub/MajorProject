@@ -175,10 +175,8 @@
             </div>
             <div class="form-group">
                 <label class="col-md-2 control-label" for="course_id">Course Code</label>
-                <div class="col-md-10">
-                    <select class="form-control" id="course" name="course" >
-                        <option id="responseCode" value="CS413"></option>
-                        </select>
+                <div class="col-md-10"  id="responseCode">
+                    
             </div>
             </div>
             <div class="form-group">
@@ -195,15 +193,15 @@
             <div class="form-group">
                 <label class="col-md-2 control-label" for="instruction">Instructions: </label>
                 <div class="col-md-10">
-                    <textarea class="form-control" id="instruction" name="instruction" rows="5" cols="50">The cat was playing in the garden.</textarea>
+                    <textarea class="form-control" id="instruction" name="instruction" rows="3" cols="50">The cat was playing in the garden.</textarea>
                 </div>
             </div>
             <div id="question">
                 <div class="form-group">
                     <div>
-                        <label class="col-md-2 control-label" for="questions">1.</label>
+                        <label class="col-md-2 control-label" for="q1">1.</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="questions[]" id="questions" required></textarea>
+                            <textarea class="form-control" name="q1" id="q1" rows="5" cols="70" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -218,10 +216,11 @@
                     <div class="col-md-5" >
                         <label class="col-md-6 control-label" style="transform: translate(0%, -20%);" for="mark">Mark:</label>
                         <div class="col-md-6">
-                            <input type="number" id="mark" name="mark" min="1" max="20" value ="1">     
+                            <input type="number" id="m1" name="m1" min="1" max="20" value ="1" onchange="totalMarks()">     
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="totalSubQuestions1" id="totalSubQuestions1" value="1"></input>
             </div>
             
             <div class="col-md-12 form-group">
@@ -229,6 +228,7 @@
                 <div class="col-md-4">
                 <button style="border: 1px solid orange;" class="btn btn-default" type="button" id="addSubQuestion">Add Sub-Question</button>
                 <button style="border: 1px solid orange;" class="btn btn-default" type="button" id="addQuestion">Add Question</button>
+                <input type="hidden" name="totalQuestions" id="totalQuestions" value="1"></input>
                 </div>
                 <div class="col-md-3"></div>
             </div>

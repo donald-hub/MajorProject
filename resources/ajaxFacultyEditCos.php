@@ -1,7 +1,7 @@
 <?php
     require "connect.php";
-if(isset($_POST['course_id']) && !empty($_POST['course_id'])){
-    $courseId = $_POST['course_id'];
+if(isset($_POST['course_id1']) && !empty($_POST['course_id1'])){
+    $courseId = $_POST['course_id1'];
 
 try {
 

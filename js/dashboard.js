@@ -3,7 +3,7 @@ var cards = document.querySelectorAll(".card");
 var cardContainer = document.querySelector(".cardContainer");
 var cardOptions = document.querySelector(".cardOptions");
 var courseTitle = document.querySelector(".course-title");
-var courseId = document.getElementById("course_id");
+var courseId = document.getElementsByClassName(".courseTitle");
 
 function goBack(){
   if(cardContainer.classList.contains("hidden")){
@@ -14,7 +14,6 @@ function goBack(){
 
 function showHint(str) {
   if (str.length == 0) {
-      alert("0");
       return;
   } else {
       var xmlhttp = new XMLHttpRequest();
@@ -34,7 +33,7 @@ for(i=0; i<cards.length; i++){
     
     //ajax part 
     cards[i].addEventListener("click", function() {
-      var courseId = document.getElementById('course_id').innerHTML;
+      var courseId = document.getElementsByClassName(".courseTitle").innerHTML;
       var xhr = new XMLHttpRequest();
       xhr.open("POST", "resources/ajaxFacultyEditCos.php", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -43,7 +42,7 @@ for(i=0; i<cards.length; i++){
           document.getElementById('responseCos').innerHTML = xhr.responseText;
         }
       };
-      xhr.send("course_id=" + courseId);
+      xhr.send("course_id1=" + courseId);
       showHint(courseId);
 
     });
@@ -51,7 +50,7 @@ for(i=0; i<cards.length; i++){
 
 
     cards[i].addEventListener("click", function() {
-      var courseId = document.getElementById('course_id').innerHTML;
+      var courseId = document.getElementsByClassName(".courseTitle").innerHTML;
       var xhr = new XMLHttpRequest();
       xhr.open("POST", "resources/ajaxFacultyStdDetails.php", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -60,7 +59,7 @@ for(i=0; i<cards.length; i++){
           document.getElementById('responseStdDetails').innerHTML = xhr.responseText;
         }
       };
-      xhr.send("course_id=" + courseId);
+      xhr.send("course_id2=" + courseId);
     });
     //end of ajax part
 
@@ -68,7 +67,8 @@ for(i=0; i<cards.length; i++){
 
      //ajax part 
      cards[i].addEventListener("click", function() {
-      var courseId = document.getElementById('course_id').innerHTML;
+      var courseId = document.getElementsByClassName(".courseTitle").innerHTML;
+  
       var xhr = new XMLHttpRequest();
       xhr.open("POST", "resources/ajaxFacultyCourseCode.php", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -77,7 +77,7 @@ for(i=0; i<cards.length; i++){
           document.getElementById('responseCode').innerHTML = xhr.responseText;
         }
       };
-      xhr.send("course_id=" + courseId);
+      xhr.send("course_id3=" + courseId);
     });
     //end of ajax part
   }
@@ -172,9 +172,6 @@ function toggleNavActive(){
     answers.classList.remove("hidden");
   }
 
-//   function logout(){
-//     window.location.href = "index.html";
-// }
 
 function download(){
   print();
@@ -196,7 +193,7 @@ var endTerm = document.getElementById("end_term");
 
 firstTerm.addEventListener('click', () => {
 
-    var courseId = document.getElementById('course_id').innerHTML;
+    var courseId = document.getElementsByClassName(".courseTitle").innerHTML;
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "resources/ajaxFacultyInsertFirst.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
