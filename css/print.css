@@ -1,0 +1,26 @@
+/* print.css */
+@media print {
+    body * {
+      visibility: hidden;
+    }
+    #printSection, #printSection *{
+      visibility: visible;
+    }
+    .options{
+        visibility: hidden;
+    }
+    #printSection {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+    #printSection button{
+        visibility: hidden;
+    }
+    .headers{
+        font-size: medium;
+        text-align: center;
+    }
+   
+  }

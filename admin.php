@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/print.css">
     <!--including boostrap files below-->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
@@ -17,15 +18,88 @@
     </nav>
     <nav class="navbarMenu">
         <span>Admin</span>
-        <button type="button" class="logout" onclick="logout()">Logout</button>
+        <form action="resources/logout.php" method="post"><input type="submit"  name="logout" class="logout" value="Logout"></input></form>
     </nav>
     <div class="cardOptions">
         <div class="sideBar">
             <ul class="view">
-                <li class="menuItems one" id="createTable">Create Table</li>
-                <li class="menuItems two" id="populateData">Populate Data</li>
-                <li class="menuItems three" id="generateReport">Generate Report</li>
+                <li class="menuItems one" id="viewProgramOb">View Programme Objectives</li>
+                <li class="menuItems two" id="createTable">Create Table</li>
+                <li class="menuItems three" id="populateData">Populate Data</li>
+                <li class="menuItems four" id="generateReport">Generate Report</li>
             </ul>
+        </div>
+        <div id="viewProgramObSection" class="viewProgramObSection ">
+            <h3>Program Objectives</h3>
+            <form action="admin.php" method="POST">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" name="program_id" id="program_id" placeholder="Programme Name"></input>
+                    </div>
+                <input class="btn" type="submit" name="program_id_btn" value="VIEW">
+                </div>
+                <?php
+                require "resources/connect.php";
+                if(isset($_POST['program_id_btn'])){
+                    $program_id = $_POST['program_id'];
+                
+                try {
+                
+                    // Prepare the SQL statement
+                    $stmt = $conn->prepare("SELECT programme_ob.program_ob_no, programme_ob.program_ob_description, programme.program_id, programme.program_name, programme.dept_id
+                                           FROM programme_ob
+                                           JOIN programme ON programme_ob.program_id = programme.program_id
+                                           WHERE programme_ob.program_id = '$program_id'");
+                    // Execute the statement
+                    $stmt->execute();
+                
+                    // Fetch all the results
+                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    echo '<div id="printSection" ><div class="center">
+                            <h3 class="headers bold">Programme Code:&ThickSpace;'.$program_id.'</h3>
+                        </div>
+                        <div class="center">
+                            <h3 class="headers bold">Programme Name:&ThickSpace;'.$results[0]['program_name'].'</h3>
+                        </div>
+                        <div class="center">
+                            <h3 class="headers bold">Offering Department:&ThickSpace;'.$results[0]['dept_id'].'</h3>
+                        </div>';
+                    echo '<div class="container">
+                            <table class="table table-bordered" border = "1">
+                                <thead>
+                                    <tr>
+                                    <th>PO\'s</th>
+                                    <th>Statements</th>
+                                    <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                
+                    // Loop through the results and output them
+                    foreach ($results as $row) {
+                        echo "<tr>
+                                <td>{$row['program_ob_no']}</td>
+                                <td>{$row['program_ob_description']}</td>
+                                <td><a role='button'>Edit</a></td>
+                              </tr>";
+                    }
+                
+                    echo '        </tbody>
+                            </table>
+                            <button class="btn btn-info">Add CO</button>
+                            <button type="button" class="btn" onclick="download()">Download</button>
+                        </div>
+                        </div>';
+                
+                } catch (PDOException $e) {
+                    echo "Connection failed: " . $e->getMessage();
+                }
+                }
+                ?>
+
+
+            </form>
+
         </div>
         <div id="createTableSection" class="container-fluid createTableSection hidden">
             <form action="resources/createTable.php" method="post">
@@ -48,7 +122,6 @@
         </div>
         <div id="populateDataSection" class="hidden">
             <h3>Add</h3>
-            <button type="button" id="answers" class="btn btn-success">Answers</button>
             <button type="button" id="courses" class="btn btn-success">Courses</button>
             <button type="button" id="courseOb" class="btn btn-success">Course Objectives</button>
             <button type="button" id="department" class="btn btn-success">Department</button>
@@ -63,10 +136,7 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                 <form action="resources/populateData.php" method="post">
-                    <div class="section answers hidden">
-                        <h3>answers</h3>
-                
-                    </div>
+                    
                 <div class="section courses hidden">
                 <h3>Courses</h3>
                 <div class="form-group">
@@ -164,7 +234,7 @@
                     <input class="form-control" type="text" name="pob_progam_ob_description" placeholder="Objective Description">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="pob_dept_id" placeholder="Department ID">
+                    <input class="form-control" type="text" name="pob_program_id" placeholder="Programme ID">
                 </div>
                 <input class="btn btn-info btn-block" name="program_ob" type="submit" value="Insert">
             </div>

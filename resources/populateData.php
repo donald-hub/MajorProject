@@ -99,10 +99,10 @@ else if(isset($_POST['program'])){
 else if(isset($_POST['program_ob'])){
     $program_ob_no = $_POST['pob_program_ob_no'];
     $program_ob_description = $_POST['pob_progam_ob_description'];
-    $program_ob_dept_id = $_POST['pob_dept_id'];
+    $program_ob_program_id = $_POST['pob_program_id'];
 
     try{
-        $sql = "INSERT INTO programme_ob (program_ob_no, program_ob_description, dept_id) VALUES ('$program_ob_no', '$program_ob_description', '$program_ob_dept_id')";
+        $sql = "INSERT INTO programme_ob (program_ob_no, program_ob_description, program_id) VALUES ('$program_ob_no', '$program_ob_description', '$program_ob_program_id')";
         // use exec() because no results are returned
         $conn->exec($sql);
         echo "Inserted successfully";
