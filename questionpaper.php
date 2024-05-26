@@ -16,9 +16,9 @@ if (isset($_POST['create'])) {
         $date = getdate();
         $year = $date['year'];
         $exam_id = $exam . "_" . $session_type . "_" . $year;
-
         
-
+        
+        
         $mpdf = new \Mpdf\Mpdf();
         $html = "<style>.universityName{margin: 0; text-align: center} .container{display: flex; } .container p{text-align: center; margin: 0; font-family: sans-serif;}";
         
@@ -81,23 +81,25 @@ if (isset($_POST['create'])) {
 
             try {
                 $index = $i - 1;
-                $sql = "INSERT INTO question_paper (que_id, description, exam_id, course_id, fk_que_id) VALUES ('$i', '".$questions[$index]."', '$exam_id', '$course_id', NULL)";
-                // use exec() because no results are returned
+                $sql = "INSERT INTO question_paper (que_id, description, exam_id, course_id, fk_que_id, marks) VALUES ('$i', '".$questions[$index]."', '$exam_id', '$course_id', NULL, '$marks[$index]')";
                 $conn->exec($sql);
             } catch (PDOException $e) {
                 echo $sql . "<br>" . $e->getMessage();
             }
 
             // Generate questions and marks
-            $html .= "<div><div style='font-family: Times New Roman; float: left;'> $i. " . htmlspecialchars($questions[$i-1]) . "</div><div style='float: right;' class='time'>".$marks[$i-1]."</div></div>";
+            $html .= "<div><div style='font-family: Times New Roman; float: left;'> $i. " . htmlspecialchars($questions[$index]) . "</div><div style='float: right;' class='time'>".$marks[$index]."</div></div>";
 
             //internal loop for inserting subquestions
             for($j = 0; $j < $totalSubQuestions; $j++){
-                $subQuestions[$j] = $_POST['q'.$i.$array[$j]];
-                $subMarks[$j] = $_POST['m'.$i.$array[$j]];
-
+                $subQuestionIndex = 'q' . $i . $array[$j];
+                $subQuestions[$j] = $_POST[$subQuestionIndex];
+                $subQuestionIndex = 'm'.$i.$array[$j];
+                $subMarks[$j] = $_POST[$subQuestionIndex];
                 try {
-                    $sql = "INSERT INTO question_paper (que_id, description, exam_id, course_id, fk_que_id) VALUES ('$i', '".$subQuestions[$j]."', '$exam_id', '$course_id', '$i')";
+                    $subQuestion_id = $i.$array[$j];
+                    $subQuestion = $subQuestions[$j];
+                    $sql = "INSERT INTO question_paper (que_id, description, exam_id, course_id, fk_que_id, marks) VALUES ('$subQuestion_id', '$subQuestion', '$exam_id', '$course_id', '$i', '$subMarks[$j]')";
                     // use exec() because no results are returned
                     $conn->exec($sql);
                 } catch (PDOException $e) {

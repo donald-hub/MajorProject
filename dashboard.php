@@ -124,7 +124,22 @@
         
         <div id="editCos" class="editCos hidden">
             <h3>Course Objectives</h3>
-            <div id="responseCos"></div> 
+            <div id="responseCos"></div>
+            <div id="editCoSection" style="margin-top: 50px">
+                <form class="form" action="" method="post">
+                    <div class="row">
+                    <div class="form-group col-md-2">
+                        <input class="form-control" type="text" placeholder="CO">
+                    </div>
+                    <div class="form-group col-md-8">
+                        <input class="form-control" type="text" placeholder="Description">
+                    </div>
+                    <div class="col-md-2">
+                        <input class="btn btn-success" type="submit" value="Update">
+                    </div>
+                    </div>
+                </form>
+            </div> 
                     
                 </div>
 
@@ -201,7 +216,7 @@
                     <div>
                         <label class="col-md-2 control-label" for="q1">1.</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="q1" id="q1" rows="5" cols="70" required></textarea>
+                            <textarea class="form-control" name="q1" id="q1" rows="5" cols="70" required>q1</textarea>
                         </div>
                     </div>
                 </div>
@@ -243,7 +258,7 @@
                 <div class="col-md-1"></div>
             </div>
             <div class="col-md-12 form-group">
-                <input class="btn btn-primary" type="submit" name="create" value="Create"></input>
+                <input class="btn btn-primary" type="submit" id="create" name="create" value="Create"></input>
             </div>
         </form>
 
