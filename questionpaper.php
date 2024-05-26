@@ -13,42 +13,11 @@ if (isset($_POST['create'])) {
         $instruction = $_POST['instruction'];
         $totalQuestions = $_POST['totalQuestions'];
         $array = ['a', 'b', 'c', 'd', 'e', 'f', 'g','h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
-        for($i = 1; $i<$totalQuestions; $i++){
-            $totalSubQuestions = $_POST['totalSubQuestions'.$i];
-            for($j = 1; $j < $totalSubQuestions; $j++){
-                $subQuestions[$j-1] = $_POST['q'.$i.$array[$j]];
-                $subMarks[$j-1] = $_POST['m'.$i.$array[$j]];
-
-                try {
-                    $index = $i - 1;
-                    $sql = "INSERT INTO question_paper (que_id, description, exam_id, course_id, fk_que_id) VALUES ('$i', '".$questions[$index]."', '$exam_id', '$course_id', '$i')";
-                    // use exec() because no results are returned
-                    $conn->exec($sql);
-                } catch (PDOException $e) {
-                    echo $sql . "<br>" . $e->getMessage();
-                }
-            }
-        }
-
         $date = getdate();
         $year = $date['year'];
         $exam_id = $exam . "_" . $session_type . "_" . $year;
 
-        for($i = 1; $i<= $totalQuestions ; $i++){
-            $questions[$i-1] = $_POST['q'.$i];
-            $marks[$i-1] = $_POST['m'.$i];
-
-            try {
-                $index = $i - 1;
-                $sql = "INSERT INTO question_paper (que_id, description, exam_id, course_id, fk_que_id) VALUES ('$i', '".$questions[$index]."', '$exam_id', '$course_id', NULL)";
-                // use exec() because no results are returned
-                $conn->exec($sql);
-            } catch (PDOException $e) {
-                echo $sql . "<br>" . $e->getMessage();
-            }
-        }
-     
+        
 
         $mpdf = new \Mpdf\Mpdf();
         $html = "<style>.universityName{margin: 0; text-align: center} .container{display: flex; } .container p{text-align: center; margin: 0; font-family: sans-serif;}";
@@ -103,12 +72,43 @@ if (isset($_POST['create'])) {
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $result = $stmt->fetchAll();
 
-            // Generate questions and marks
-            $no = 0;
-            foreach ($questions as $value) {
-                $no++;
-                $html .= "<div><div style='font-family: Times New Roman; float: left;'> $no. " . htmlspecialchars($value) . "</div><div style='float: right;' class='time'>".$marks[$no]."</div></div>";
+
+            //external loop for inserting parent quesiont
+        for($i = 1; $i<= $totalQuestions ; $i++){
+            $questions[$i-1] = $_POST['q'.$i];
+            $marks[$i-1] = $_POST['m'.$i];
+            $totalSubQuestions = $_POST['totalSubQuestions'.$i];
+
+            try {
+                $index = $i - 1;
+                $sql = "INSERT INTO question_paper (que_id, description, exam_id, course_id, fk_que_id) VALUES ('$i', '".$questions[$index]."', '$exam_id', '$course_id', NULL)";
+                // use exec() because no results are returned
+                $conn->exec($sql);
+            } catch (PDOException $e) {
+                echo $sql . "<br>" . $e->getMessage();
             }
+
+            // Generate questions and marks
+            $html .= "<div><div style='font-family: Times New Roman; float: left;'> $i. " . htmlspecialchars($questions[$i-1]) . "</div><div style='float: right;' class='time'>".$marks[$i-1]."</div></div>";
+
+            //internal loop for inserting subquestions
+            for($j = 0; $j < $totalSubQuestions; $j++){
+                $subQuestions[$j] = $_POST['q'.$i.$array[$j]];
+                $subMarks[$j] = $_POST['m'.$i.$array[$j]];
+
+                try {
+                    $sql = "INSERT INTO question_paper (que_id, description, exam_id, course_id, fk_que_id) VALUES ('$i', '".$subQuestions[$j]."', '$exam_id', '$course_id', '$i')";
+                    // use exec() because no results are returned
+                    $conn->exec($sql);
+                } catch (PDOException $e) {
+                    echo $sql . "<br>" . $e->getMessage();
+                }
+                $html .= "<div><div style='font-family: Times New Roman; float: left;'>($array[$j])" . htmlspecialchars($subQuestions[$j]) . "</div><div style='float: right;' class='time'>".$subMarks[$j]."</div></div>";
+
+            }
+        }
+     
+           
 
             // Table for course outcomes mapping
             $html .= "<div>";

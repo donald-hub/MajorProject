@@ -220,7 +220,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="totalSubQuestions1" id="totalSubQuestions1" value="1"></input>
+                <input type="hidden" name="totalSubQuestions1" id="totalSubQuestions1" value="0"></input>
             </div>
             
             <div class="col-md-12 form-group">

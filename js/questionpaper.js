@@ -12,9 +12,7 @@ function addQuestionFunction(){
     var isLimitCrossed = totalMarks();
     if(isLimitCrossed==0){
         var totalQuestions = document.getElementById("totalQuestions");
-        var totalSubQuestions = document.getElementById("totalSubQuestions"+increment);
         totalQuestions.value++;
-        totalSubQuestions.value++;
         increment++;
         subincrement = 0;
     
@@ -41,7 +39,8 @@ function addQuestionFunction(){
                     '<input type="number" id="m'+increment+'" name="m'+increment+'" min="1" max="20" value ="1" onchange="totalMarks()">     '+
                 '</div>'+
             '</div>'+
-    '</div>';
+    '</div>' +
+    '<input type="hidden" name="totalSubQuestions'+increment+'" id="totalSubQuestions'+increment+'" value="0"></input>';
                     questionHtml.insertAdjacentHTML('beforeend', string);
     }
     else alert("Exceeded Full Marks limit");
@@ -52,6 +51,7 @@ function addSubQuestionFunction(){
     // var isLimitCrossed = totalMarks();
     // if(isLimitCrossed==0){
         var totalSubQuestions = document.getElementById("totalSubQuestions"+increment);
+        totalSubQuestions.value++;
         alert(totalSubQuestions.value);
     var string =
     '<div class="form-group">' +
@@ -73,12 +73,12 @@ function addSubQuestionFunction(){
         '<div class="col-md-5" >'+
             '<label class="col-md-6 control-label" style="transform: translate(0%, -20%);" for="mark">Mark:</label>'+
             '<div class="col-md-6">'+
-                '<input type="number" id="mark" name="mark" min="1" max="20" value ="1">     '+
+                '<input type="number" id="m'+increment+array[subincrement]+'" name="m'+increment+array[subincrement]+'" min="1" max="20" value ="1">     '+
             '</div>'+
         '</div>'+
         ' <input type="hidden" name="totalSubQuestions'+increment+'" id="totalSubQuestions'+increment+'" value="1"></input>' +
-'</div>';
-subincrement++;
+        '</div>';
+        subincrement++;
 questionHtml.insertAdjacentHTML('beforeend', string);
             }
         //     else alert("Exceeded Full Marks limit");
