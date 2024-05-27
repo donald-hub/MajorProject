@@ -178,13 +178,6 @@ function download(){
 }
 
 
-function edit(row){
-  console.log(row);
-  var editOption = document.getElementById("editOption");
-  editOption.classList.remove("hidden");
-}
-
-
 var firstTerm = document.getElementById("first_term");
 var midTerm = document.getElementById("mid_term");
 var secondTerm = document.getElementById("second_term");
@@ -216,3 +209,14 @@ secondTerm.addEventListener('click', () => {
 endTerm.addEventListener('click', () => {
   alert("end");
 });
+
+
+
+var editCoSection = document.getElementById("editCoSection");
+var editBtn = document.getElementById("editBtn");
+editBtn.addEventListener('click', function(){
+  alert("working");
+  editCoSection.classList.add("hidden");
+  var editOption = document.getElementById("editOption");
+  editOption.classList.remove("hidden");
+})

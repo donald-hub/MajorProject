@@ -40,7 +40,7 @@ try {
                 <td>{$row['description']}</td>
                 <td>{$row['level']}</td>
                 <td class='options'>
-                    <a role='button' onclick='edit(".$row['course_ob_no'].")'>Edit</a>
+                    <a role='button' id='editBtn'>Edit</a>
                 </td>
               </tr>";
     }

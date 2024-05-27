@@ -9,8 +9,11 @@ addQuestion.addEventListener('click', addQuestionFunction);
 addSubQuestion.addEventListener('click', addSubQuestionFunction);
 
 function addQuestionFunction(){
-    var isLimitCrossed = totalMarks();
-    if(isLimitCrossed==0){
+    var fullMarks = document.getElementById("full_marks");
+    var total = totalMarks();
+    if(total>=fullMarks.value){
+        alert("Exceeded Full Marks limit");
+        }else {
         var totalQuestions = document.getElementById("totalQuestions");
         totalQuestions.value++;
         increment++;
@@ -21,7 +24,7 @@ function addQuestionFunction(){
             '<div>' +
                 '<label class="col-md-2 control-label" for="q'+ increment + '">' + increment + '. </label>' +
                 '<div class="col-md-10">' +
-                    '<textarea class="form-control" name="q'+ increment + '" id="q'+increment+'" rows="5" cols="70" required></textarea>' +
+                    '<textarea class="form-control" name="q'+ increment + '" id="q'+increment+'" rows="5" cols="70" required>q'+ increment + '</textarea>' +
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -36,29 +39,30 @@ function addQuestionFunction(){
             '<div class="col-md-5" >'+
                 '<label class="col-md-6 control-label" style="transform: translate(0%, -20%);" for="mark">Mark:</label>'+
                 '<div class="col-md-6">'+
-                    '<input type="number" id="m'+increment+'" name="m'+increment+'" min="1" max="20" value ="1" onchange="totalMarks()">     '+
+                    '<input type="number" id="m'+increment+'" name="m'+increment+'" min="1" max="20" value ="1"></input>'+
                 '</div>'+
             '</div>'+
     '</div>' +
     '<input type="hidden" name="totalSubQuestions'+increment+'" id="totalSubQuestions'+increment+'" value="0"></input>';
                     questionHtml.insertAdjacentHTML('beforeend', string);
     }
-    else alert("Exceeded Full Marks limit");
    
-            };
+      };
 
 function addSubQuestionFunction(){
-    // var isLimitCrossed = totalMarks();
-    // if(isLimitCrossed==0){
+    var fullMarks = document.getElementById("full_marks");
+var total = totalMarks();
+if(total>=fullMarks.value){
+    alert("Exceeded Full Marks limit");
+    }else {
         var totalSubQuestions = document.getElementById("totalSubQuestions"+increment);
         totalSubQuestions.value++;
-        alert(totalSubQuestions.value);
     var string =
     '<div class="form-group">' +
         '<div>' +
-            '<label class="col-md-2 control-label" for="subquestions">(' + array[subincrement] + ') </label>' +
+            '<label class="col-md-2 control-label" for="q'+increment+array[subincrement]+'">(' + array[subincrement] + ')</label>' +
             '<div class="col-md-10">' +
-                '<textarea class="form-control" name="q'+increment+array[subincrement]+'" id="q'+increment+array[subincrement]+'" rows="5" cols="70" required></textarea>' +
+                '<textarea class="form-control" name="q'+increment+array[subincrement]+'" id="q'+increment+array[subincrement]+'" rows="5" cols="70" required>q'+increment+array[subincrement]+'</textarea>' +
             '</div>'+
         '</div>'+
     '</div>'+
@@ -73,30 +77,42 @@ function addSubQuestionFunction(){
         '<div class="col-md-5" >'+
             '<label class="col-md-6 control-label" style="transform: translate(0%, -20%);" for="mark">Mark:</label>'+
             '<div class="col-md-6">'+
-                '<input type="number" id="m'+increment+array[subincrement]+'" name="m'+increment+array[subincrement]+'" min="1" max="20" value ="1">     '+
+                '<input type="number" id="m'+increment+array[subincrement]+'" name="m'+increment+array[subincrement]+'" min="1" max="20" value ="1"></input>'+
             '</div>'+
         '</div>'+
-        ' <input type="hidden" name="totalSubQuestions'+increment+'" id="totalSubQuestions'+increment+'" value="1"></input>' +
         '</div>';
         subincrement++;
-questionHtml.insertAdjacentHTML('beforeend', string);
-            }
-        //     else alert("Exceeded Full Marks limit");
-        // };
+        questionHtml.insertAdjacentHTML('beforeend', string);
+    }
+        };
     
             
-var total = 0;
-function totalMarks(){
+    function totalMarks(){
+    var total = 0;
     var totalQuestions = document.getElementById("totalQuestions");
-    var fullMarks = document.getElementById("full_marks");
     for(var i = 1; i <= totalQuestions.value; i++){
         var marks = document.getElementById("m"+i);
         total += parseInt(marks.value);
+
+        var totalSubQuestions = document.getElementById("totalSubQuestions"+i);
+        for(var j = 0; j < totalSubQuestions.value; j++){
+            var subMarks = document.getElementById("m"+i+array[j]);
+            total += parseInt(subMarks.value);
+        };
     }
-    if(total>=fullMarks.value){
-    total = 0;
-        return 1;
-    }    
-    total = 0;
-    return 0;
+    
+    return total;
 }
+
+
+var createButton = document.getElementById("create");
+createButton.addEventListener('click', function(event){
+    total = totalMarks();
+    alert(total)
+    var fullMarks = document.getElementById("full_marks");
+
+    if(total != fullMarks.value){
+        event.preventDefault();
+        alert("Total Marks doesnot match Full marks");
+    }
+})
