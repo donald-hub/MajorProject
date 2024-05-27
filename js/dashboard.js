@@ -212,11 +212,46 @@ endTerm.addEventListener('click', () => {
 
 
 
-var editCoSection = document.getElementById("editCoSection");
-var editBtn = document.getElementById("editBtn");
-editBtn.addEventListener('click', function(){
-  alert("working");
-  editCoSection.classList.add("hidden");
-  var editOption = document.getElementById("editOption");
-  editOption.classList.remove("hidden");
-})
+
+function updateCo(courseObNo, description, level, courseId){
+  
+  var editCoSection = document.getElementById("editCoSection");
+  var editBtn = document.getElementById("editBtn");
+  editBtn.addEventListener("click", updateCo);
+ // Prepare the data to send
+ var data = "course_ob_no=" + encodeURIComponent(courseObNo) +
+ "&description=" + encodeURIComponent(description) +
+ "&level=" + encodeURIComponent(level) +
+ "&courseId=" + encodeURIComponent(courseId);
+ 
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "resources/ajaxFacultyUpdateCo.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        document.getElementById('responseEditCoSection').innerHTML = xhr.responseText;
+      }
+    };
+    xhr.send(data);
+};
+
+
+
+function update(){
+ // Prepare the data to send
+ var data = "course_ob_no=" + encodeURIComponent(courseObNo) +
+ "&description=" + encodeURIComponent(description) +
+ "&level=" + encodeURIComponent(level) +
+ "&courseId=" + encodeURIComponent(courseId);
+ 
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "resources/ajaxFacultyUpdate.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        document.getElementById('responseEditCoSection').innerHTML = xhr.responseText;
+      }
+    };
+    xhr.send(data);
+
+}
