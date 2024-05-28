@@ -22,6 +22,7 @@ if (isset($_POST['create'])) {
         $mpdf = new \Mpdf\Mpdf();
         $html = "<style>.universityName{margin: 0; text-align: center} .container{display: flex; } .container p{text-align: center; margin: 0; font-family: sans-serif;}";
         
+        $html .= ".marks{float: right; width: 100px;}";
         $html .= ".time{text-align: right} .note{font-size: small; text-align: center;}";
         $html .= "table,th,td{border: 1px solid; border-collapse: collapse;}";
         $html .= ".instructions{font-size: small; border: 1px solid black; font-style: italic; padding: 10px; margin-bottom: 10px;}</style>";
@@ -88,7 +89,7 @@ if (isset($_POST['create'])) {
             }
 
             // Generate questions and marks
-            $html .= "<div><div style='font-family: Times New Roman; float: left;'> $i. " . htmlspecialchars($questions[$index]) . "</div><div style='float: right;' class='time'>".$marks[$index]."</div></div>";
+            $html .= "<div style='font-family: Times New Roman; position:relative;'> $i. " . htmlspecialchars($questions[$index]) . "<span style='display:inline; position: absolute; right:0;'> &emsp;[".$marks[$index]."]</span></div>";
 
             //internal loop for inserting subquestions
             for($j = 0; $j < $totalSubQuestions; $j++){
@@ -105,8 +106,7 @@ if (isset($_POST['create'])) {
                 } catch (PDOException $e) {
                     echo $sql . "<br>" . $e->getMessage();
                 }
-                $html .= "<div><div style='font-family: Times New Roman; float: left;'>($array[$j])" . htmlspecialchars($subQuestions[$j]) . "</div><div style='float: right;' class='time'>".$subMarks[$j]."</div></div>";
-
+                $html .= "<div style='font-family: Times New Roman; overflow:auto; float: left;'>($array[$j])" . htmlspecialchars($subQuestions[$j]) . "<span class='marks'>".$subMarks[$j]."</span></div>";
             }
         }
      

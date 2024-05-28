@@ -22,7 +22,7 @@ try {
             <h3 class="headers bold">Course Name:&ThickSpace;'.$results[0]["course_name"].'</h3>
         </div>';
     echo '<div class="container">
-            <table id="editCo" class="table table-bordered" border = "1">
+            <table class="table table-bordered" border = "1">
                 <thead>
                     <tr>
                     <th>CO\'s</th>
@@ -40,7 +40,7 @@ try {
                 <td>{$row['description']}</td>
                 <td>{$row['level']}</td>
                 <td class='options'>
-                <button type='button' class='btn btn-link' id='editBtn' onclick='updateCo(\"{$row['course_ob_no']}\", \"{$row['description']}\", \"{$row['level']}\", \"{$courseId} \")'>Edit</button>
+                    <a role='button' id='editBtn'>Edit</a>
                 </td>
               </tr>";
     }

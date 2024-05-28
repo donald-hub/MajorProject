@@ -125,20 +125,23 @@
         <div id="editCos" class="editCos hidden">
             <h3>Course Objectives</h3>
             <div id="responseCos"></div>
-            <div id="editCoSection" style="margin-top: 50px">
-                <form class="form" action="" method="post">
-                    <div class="row">
-                    <div class="form-group col-md-2">
-                        <input class="form-control" type="text" placeholder="CO">
-                    </div>
-                    <div class="form-group col-md-8">
-                        <input class="form-control" type="text" placeholder="Description">
-                    </div>
-                    <div class="col-md-2">
-                        <input class="btn btn-success" type="submit" value="Update">
-                    </div>
-                    </div>
-                </form>
+            <div id="responseEditCoSection" style="margin-top: 50px">
+            <form class="form" action="" method="post">
+                <div class="row">
+                <div class="form-group col-md-1">
+                    <input class="form-control" type="text" placeholder="CO" value="$course_ob_no"></input>
+                </div>
+                <div class="form-group col-md-8">
+                    <input class="form-control" type="text" placeholder="Description" value="<php echo $description; ?>"></input>
+                </div>
+                <div class="form-group col-md-1">
+                    <input class="form-control" type="text" placeholder="Level" value="<php echo $level; ?>"></input>
+                </div>
+                <div class="col-md-2">
+                    <input class="btn btn-success" name="update" type="button" value="Update" onclick="update()">
+                </div>
+                </div>
+            </form>
             </div> 
                     
                 </div>
