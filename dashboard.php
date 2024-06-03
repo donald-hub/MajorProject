@@ -64,8 +64,8 @@
                 <li class="menuItems one" >Course Details</li>
                 <li class="menuItems two">View Course Objectives</li>
                 <li class="menuItems three">Question Papers</li>
-                <li class="menuItems five">Answers</li>
-                <li class="menuItems four">Students Details</li>
+                <li class="menuItems five">PYQ's</li>
+                <li class="menuItems four">Students Marks Details</li>
             </ul>
         </div>
             
@@ -87,18 +87,7 @@
                     <li>Course Credit:</li>
                     <li>4</li>
                 </ul>
-                <ul id="sublist">
-                    <li>Course Objective</li>
-                    <li><ul class="orderedList">
-                        <li>CO 1</li>
-                        <li>CO 2</li>
-                        <li>CO 3</li>
-                            <li>CO 4</li>
-                            <li>CO 5</li>
-                        </ul>
-                    </li>
-                        
-                </ul>
+                
                 
             </ul>
             </div>
@@ -129,13 +118,13 @@
             <form class="form" action="" method="post">
                 <div class="row">
                 <div class="form-group col-md-1">
-                    <input class="form-control" type="text" placeholder="CO" value="$course_ob_no"></input>
+                    <input class="form-control" type="text" placeholder="CO" value="CO1"></input>
                 </div>
                 <div class="form-group col-md-8">
-                    <input class="form-control" type="text" placeholder="Description" value="<php echo $description; ?>"></input>
+                    <input class="form-control" type="text" placeholder="Description" value="Choose appropriate protocol and parameters under given use cases and network conditions."></input>
                 </div>
                 <div class="form-group col-md-1">
-                    <input class="form-control" type="text" placeholder="Level" value="<php echo $level; ?>"></input>
+                    <input class="form-control" type="text" placeholder="Level" value="1"></input>
                 </div>
                 <div class="col-md-2">
                     <input class="btn btn-success" name="update" type="button" value="Update" onclick="update()">
@@ -152,7 +141,7 @@
 
 
                 <div id="studentDetails" class="studentDetails hidden">
-                    <h3>Student Details</h3>
+                    <!-- <h3>Student Details</h3> -->
                     <div id="responseStdDetails"></div>
                     <div class="insertMarks">
                         <button id="first_term" class="btn btn-success" type="button" name="first_term">Insert First Term Marks</button>

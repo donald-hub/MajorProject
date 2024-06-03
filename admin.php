@@ -30,7 +30,8 @@
             </ul>
         </div>
         <div id="viewProgramObSection" class="viewProgramObSection ">
-            <h3>Program Objectives</h3>
+            <!-- <h3>Program Objectives</h3> -->
+            <div class="container-fluid" style="padding-top: 50px;">
             <form action="admin.php" method="POST">
                 <div class="form-group">
                     <div class="col-md-6">
@@ -99,6 +100,7 @@
 
 
             </form>
+            </div>
 
         </div>
         <div id="createTableSection" class="container-fluid createTableSection hidden">
