@@ -72,21 +72,26 @@
         <div class="main container"> 
             <input type="hidden" id="course_id" value="CS413"></input>
             <div id="courseDetails" class="courseDetails hidden">
-                <h3>Course Details</h3>
+                <!-- <h3>Course Details</h3> -->
+                <div class="jumbotron" style="margin-top: 50px; background-color: #AED6F1;">
+                    <h1>Data Mining</h1>
+                    <ul id="courseDetails">
+                    <ul id="sublist">
+                        <li>Course Code:</li>
+                        <li class="course-title"></li>
+                    </ul>
+                    <ul id="sublist">
+                        <li>Course Name:</li>
+                        <li>Data Mining</li>
+                    </ul>
+                    <ul id="sublist">
+                        <li>Course Credit:</li>
+                        <li>4</li>
+                    </ul>
+                    <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p> -->
+                </div>
                 
-            <ul id="courseDetails">
-                <ul id="sublist">
-                    <li>Course Code:</li>
-                    <li class="course-title"></li>
-                </ul>
-                <ul id="sublist">
-                    <li>Course Name:</li>
-                    <li>Data Mining</li>
-                </ul>
-                <ul id="sublist">
-                    <li>Course Credit:</li>
-                    <li>4</li>
-                </ul>
+            
                 
                 
             </ul>

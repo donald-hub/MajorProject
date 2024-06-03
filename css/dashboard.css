@@ -65,9 +65,11 @@ body{
 #sublist{
     display: flex;
     justify-content: flex-start;
+    padding-inline-start: 0px;
 }
 #sublist > li{
     padding: 5px;
+    margin-left: 0px;
     list-style: none;
 }
 #sublist > li:first-child{
@@ -156,4 +158,8 @@ body{
 
 .insertMarks{
     padding-left: 15px;
+}
+
+.jumbotron{
+    background-color: #c49ae4;
 }
