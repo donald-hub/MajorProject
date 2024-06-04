@@ -5,7 +5,7 @@ if(isset($_POST['course_id']) && !empty($_POST['course_id'])){
 
 
 try {
-    $test = 'test1';
+    $test = 'mid';
     // Get the current date 
     $date = getdate(); 
     $month = $date['mon'];

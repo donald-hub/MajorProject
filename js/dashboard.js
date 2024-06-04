@@ -199,15 +199,42 @@ firstTerm.addEventListener('click', () => {
 });
 
 midTerm.addEventListener('click', () => {
-  alert("mid");
+  var courseId = document.getElementsByClassName(".courseTitle").innerHTML;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "resources/ajaxFacultyInsertMid.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        document.getElementById('responseInsertMarks').innerHTML = xhr.responseText;
+      }
+    };
+    xhr.send("course_id=" + courseId);
 });
 
 secondTerm.addEventListener('click', () => {
-  alert("2");
+  var courseId = document.getElementsByClassName(".courseTitle").innerHTML;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "resources/ajaxFacultyInsertSecond.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        document.getElementById('responseInsertMarks').innerHTML = xhr.responseText;
+      }
+    };
+    xhr.send("course_id=" + courseId);
 });
 
 endTerm.addEventListener('click', () => {
-  alert("end");
+  var courseId = document.getElementsByClassName(".courseTitle").innerHTML;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "resources/ajaxFacultyInsertEnd.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        document.getElementById('responseInsertMarks').innerHTML = xhr.responseText;
+      }
+    };
+    xhr.send("course_id=" + courseId);
 });
 
 
