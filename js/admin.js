@@ -66,6 +66,7 @@ function showGenerateReportSection(){
     populateDataSection.classList.add("hidden");
     generateReportSection.classList.remove("hidden");
 }
+
 function nextForm(){
     if(columns.value != "" && tableName.value != ""){
         var decrement = columns.value;
