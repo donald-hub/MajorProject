@@ -51,7 +51,6 @@ foreach ($array2d as $row) {
     foreach ($row as $element) {
         echo "<td>".$element . "</td> ";
     }
-    echo "<br>";
     echo "</tr>";
 }
 // echo "<tr>
@@ -83,7 +82,7 @@ echo "Connection failed: " . $e->getMessage();
 
 
 echo "<h3 style='text-align: center'><caption>CO Attainment</caption></h3>";
-echo '<div class="col-md-3"></div><div class="col-md-6">
+echo '<div class="row"><div class="col-md-3"></div><div class="col-md-6">
 <table class="table table-bordered">
 <thead>
 <th>CO Number</th>
@@ -108,7 +107,7 @@ echo '<div class="col-md-3"></div><div class="col-md-6">
 <td>1.8</td></tr>
 </tbody>
 </table>
-</div><div class="col-md-3"></div>';
+</div><div class="col-md-3"></div></div>';
 
 
 
@@ -163,7 +162,6 @@ try {
         foreach ($row as $element) {
             echo "<td>".$element . "</td> ";
         }
-        echo "<br>";
         echo "</tr>";
     }
     // echo "<tr>
