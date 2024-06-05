@@ -276,7 +276,10 @@
         </div>
 
         <div id="generateReportSection" class="hidden">
-            <h3>Generate Report</h3>
+            <!-- <h3>Generate Report</h3> -->
+            <div class="responseReport">
+                <?php require "resources/ajaxAdminReport.php"; ?>
+            </div>
         </div> 
     </div>         
     <script src="js/admin.js"></script>

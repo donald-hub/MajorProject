@@ -1,7 +1,7 @@
 body{
     margin: 0px;
     background-color: #FAF9F6;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .navigationBar{
     background-color: skyblue;
